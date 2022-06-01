@@ -1,20 +1,32 @@
 import Link from 'next/link';
 import React from 'react';
+import { urlFor } from '../lib/client';
+import { BannerData } from '../types/sanity';
 
-const HeroBanner = (): JSX.Element => {
+interface HeroBanner {
+	heroBanner: BannerData;
+}
+
+const HeroBanner = ({ heroBanner }: HeroBanner): JSX.Element => {
+	console.log('props on HeroBanner', heroBanner);
 	return (
 		<div className='hero-banner-container'>
 			<div>
-				<p className='reach'>Small Text</p>
-				<h3>MID Text</h3>
-				<img src='' alt='reach' className='hero-banner-image' />
+				<p className='reach'>{heroBanner?.smallText}</p>
+				<h3>{heroBanner?.midText}</h3>
+				<h1>{heroBanner?.largeText1}</h1>
+				<img
+					src={urlFor(heroBanner.image)}
+					alt='reach'
+					className='hero-banner-image'
+				/>
 				<div>
-					<Link href='/product/ID'>
-						<button type='button'>BUTTON TEXT</button>
+					<Link href={`/product/${heroBanner.product}`}>
+						<button type='button'>{heroBanner?.buttonText}</button>
 					</Link>
 					<div className='desc'>
-						<h5>Descrition</h5>
-						<p>DESCRIPTION</p>
+						<h5>Description</h5>
+						<p>{heroBanner.desc}</p>
 					</div>
 				</div>
 			</div>
