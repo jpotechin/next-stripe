@@ -22,7 +22,7 @@ const Home: NextPage<HomeProps> = ({ productData, bannerData }: HomeProps) => {
 					<Product key={product._id} product={product} />
 				))}
 			</div>
-			<FooterBanner />
+			<FooterBanner footerBanner={bannerData && bannerData[0]} />
 		</>
 	);
 };
